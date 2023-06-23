@@ -1,0 +1,25 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @organizer %>
+
+<div>
+  <%= link_to "Edit this organizer", edit_organizer_path(@organizer) %>
+</div>
+
+<br/>
+
+<div>
+  <%= link_to "Back to organizers", organizers_path %>
+</div>
+
+<br/>
+
+<div>
+  <%= button_to "Link with Merge", create_merge_link_organizer_url(@organizer), data: { remote: true } %>
+</div>
+
+<br/>
+
+<div>
+  <%= button_to "Destroy this organizer", @organizer, method: :delete %>
+</div>
