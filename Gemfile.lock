@@ -173,7 +173,7 @@ PLATFORMS
 DEPENDENCIES
   byebug
   httparty
-  importmap-rails (~> 1.2)
+  importmap-rails
   merge_ats_client
   merge_hris_client
   pg
