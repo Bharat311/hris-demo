@@ -5,6 +5,7 @@ ruby '3.1.2'
 
 gem 'rails', '~> 7.0.5'
 
+gem 'importmap-rails'
 gem 'httparty'
 gem 'merge_ats_client'
 gem 'merge_hris_client'
