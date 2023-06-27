@@ -8,18 +8,36 @@
 
 <br/>
 
-<div>
-  <%= link_to "Back to organizers", organizers_path %>
-</div>
+<%- @organizer.integrations.each do |integration| %>
+  <% next unless integration.account_token? %>
 
-<br/>
+  <h4><%= integration.provider.upcase %></h4>
+  <p>Total count: <%= integration.employees.count %></p>
+  <p>Sample:</p>
+  <pre>
+<%= JSON.pretty_generate(integration.data.sample) %>
+  </pre>
+
+  <div>
+    <%= button_to "Edit integration", merge_link_organizer_integrations_path(@organizer, { uuid: integration.uuid }), remote: true, form: { class: 'merge-link', data: { type: 'json' } } %>
+  </div>
+
+  <br/>
+  <br/>
+<% end %>
 
 <div>
-  <%= button_to "Link with Merge", create_merge_link_organizer_url(@organizer), data: { remote: true } %>
+  <%= button_to "Link with Merge", merge_link_organizer_integrations_path(@organizer), remote: true, form: { class: 'merge-link', data: { type: 'json' } } %>
 </div>
 
 <br/>
 
 <div>
   <%= button_to "Destroy this organizer", @organizer, method: :delete %>
+</div>
+
+<br/>
+
+<div>
+  <%= link_to "Back to organizers", organizers_path %>
 </div>

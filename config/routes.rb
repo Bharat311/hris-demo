@@ -1,10 +1,12 @@
 Rails.application.routes.draw do
   resources :organizers do
-    member do
-      post :create_merge_link
+    resources :integrations, only: %i(destroy) do
+      collection do
+        post :merge_link
+      end
     end
+    resources :users
   end
-  resources :users
 
   root 'organizers#index'
 end

@@ -45,10 +45,6 @@ class OrganizersController < ApplicationController
     redirect_to organizers_url, notice: "Organizer was successfully destroyed.", status: :see_other
   end
 
-  def create_merge_link
-    @reponse = @organizer.merge_api.create_link_token
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_organizer

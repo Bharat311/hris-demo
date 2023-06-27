@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :set_organizer
   before_action :set_user, only: %i[ show edit update destroy ]
 
   # GET /users
@@ -46,6 +47,10 @@ class UsersController < ApplicationController
   end
 
   private
+    def set_organizer
+      @organizer = Organizer.find(params[:organizer_id])
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])

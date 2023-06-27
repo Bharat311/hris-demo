@@ -1,16 +1,12 @@
 class Organizer < ApplicationRecord
+  ORGANIZATION_NAME = 'ACME Corp.'.freeze
+
+  has_many :integrations, dependent: :destroy
+
   validates :email, presence: true
   validates :email, uniqueness: { case_sensitive: false, allow_blank: true }
 
-  def hash
-    Digest::MD5.hexdigest(email)
-  end
-
   def organization_name
-    'ACME Corp.'
-  end
-
-  def merge_api
-    @merge_api ||= MergeApi.new(self)
+    ORGANIZATION_NAME
   end
 end
