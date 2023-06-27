@@ -1,5 +1,5 @@
 class OrganizersController < ApplicationController
-  before_action :set_organizer, only: %i[ show edit update destroy create_merge_link]
+  before_action :set_organizer, only: %i[ show edit update destroy merge paragon]
 
   # GET /organizers
   def index
@@ -43,6 +43,12 @@ class OrganizersController < ApplicationController
   def destroy
     @organizer.destroy
     redirect_to organizers_url, notice: "Organizer was successfully destroyed.", status: :see_other
+  end
+
+  def merge
+  end
+
+  def paragon
   end
 
   private

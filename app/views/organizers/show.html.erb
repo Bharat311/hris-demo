@@ -1,43 +1,23 @@
 <p style="color: green"><%= notice %></p>
 
+<p>
+  <%= link_to "Back to organizers", organizers_path %>
+</p>
+
 <%= render @organizer %>
 
-<div>
+<p>
   <%= link_to "Edit this organizer", edit_organizer_path(@organizer) %>
-</div>
+</p>
 
-<br/>
+<p>
+  <%= link_to "Merge portal", merge_organizer_path(@organizer) %>
+</p>
 
-<%- @organizer.integrations.each do |integration| %>
-  <% next unless integration.account_token? %>
+<p>
+  <%= link_to "Paragon portal", paragon_organizer_path(@organizer) %>
+</p>
 
-  <h4><%= integration.provider.upcase %></h4>
-  <p>Total count: <%= integration.employees.count %></p>
-  <p>Sample:</p>
-  <pre>
-<%= JSON.pretty_generate(integration.data.sample) %>
-  </pre>
-
-  <div>
-    <%= button_to "Edit integration", merge_link_organizer_integrations_path(@organizer, { uuid: integration.uuid }), remote: true, form: { class: 'merge-link', data: { type: 'json' } } %>
-  </div>
-
-  <br/>
-  <br/>
-<% end %>
-
-<div>
-  <%= button_to "Link with Merge", merge_link_organizer_integrations_path(@organizer), remote: true, form: { class: 'merge-link', data: { type: 'json' } } %>
-</div>
-
-<br/>
-
-<div>
+<p>
   <%= button_to "Destroy this organizer", @organizer, method: :delete %>
-</div>
-
-<br/>
-
-<div>
-  <%= link_to "Back to organizers", organizers_path %>
-</div>
+</p>

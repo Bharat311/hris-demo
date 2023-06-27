@@ -1,0 +1,19 @@
+<p>
+  <%= button_to "Link with Merge", merge_link_organizer_integrations_path(@organizer), remote: true, form: { class: 'merge-link', data: { type: 'json' } } %>
+</p>
+
+<%- @organizer.integrations.each do |integration| %>
+  <% next unless integration.account_token? %>
+
+  <h4><%= integration.provider.upcase %></h4>
+  <p>Total count: <%= integration.employees.count %></p>
+  <p>Sample:</p>
+  <pre>
+<%= JSON.pretty_generate(integration.data.sample) %>
+  </pre>
+
+  <p>
+    <%= button_to "Edit integration", merge_link_organizer_integrations_path(@organizer, { uuid: integration.uuid }), remote: true, form: { class: 'merge-link', data: { type: 'json' } } %>
+  </p>
+
+<% end %>

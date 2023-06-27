@@ -1,6 +1,6 @@
 class IntegrationsController < ApplicationController
-  before_action :set_organizer
-  before_action :set_integration
+  before_action :set_organizer, except: :ingest
+  before_action :set_integration, except: :ingest
 
   def merge_link
     render json: @integration.merge_link, status: :ok
@@ -8,6 +8,10 @@ class IntegrationsController < ApplicationController
 
   def destroy
     @integration.destroy
+  end
+
+  def ingest
+    Datum.create!(body: params[:data])
   end
 
   private

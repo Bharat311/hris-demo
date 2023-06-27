@@ -33,5 +33,6 @@ module HrisDemo
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+    config.hosts << "paragon.loca.lt"
   end
 end

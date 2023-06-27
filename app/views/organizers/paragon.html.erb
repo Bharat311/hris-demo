@@ -1,0 +1,15 @@
+<div>
+  <h4>Greenhouse</h4>
+  <%= button_tag "Connect", class: 'connect-paragon', data: { provider: 'greenhouse' } %>
+  <%= button_to "Sync Data", sync_data_path(service: 'greenhouse'), form: { class: 'sync-paragon' } %>
+  <%= button_to "Clear Data", clear_data_path(service: 'greenhouse'), form: { class: 'clear-paragon' } %>
+
+  <%- data = ::Datum.find_by(provider: 'greenhouse').try(:body) || [] %>
+
+  <p>Total count: <%= data.count %></p>
+  <p>Sample:</p>
+  <pre>
+  <%= JSON.pretty_generate(data.sample) %>
+    </pre>
+
+</div>
